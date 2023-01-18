@@ -58,3 +58,8 @@
     --bs-btn-disabled-border-color: var(--hc-blue-color-hsl);
     --bs-gradient: none;
 }
+
+.bg-hc-primary {
+    --bs-bg-opacity: 1;
+    background-color: var(--hc-blue-color-rgb)!important;
+}
