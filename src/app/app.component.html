@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-md-12">
       <app-recipes *ngIf="displayedFeature === 'recipe'"></app-recipes>
-      <app-shopping-list *ngIf="displayedFeature === 'shoppinglist'"></app-shopping-list>
+      <app-shopping-list *ngIf="displayedFeature !== 'recipe'"></app-shopping-list>
     </div>
   </div>
 </div>
