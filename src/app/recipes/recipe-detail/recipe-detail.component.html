@@ -1,13 +1,13 @@
 <div class="row">
     <div class="col-md-7">
-        <h2>Recipe Name</h2>
-        <p>Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2>{{recipe.name}}</h2>
+        <p>{{recipe.description}}</p>
         <div>Ingredients</div>
         <button class="btn btn-hc-primary">Edit Recipe</button>
         <button class="btn btn-hc-primary">Add Ingredients to Shopping List</button>
         <button class="btn btn-hc-primary">Delete Recipe</button>
     </div>
     <div class="col-md-5">
-        <img src="">
+        <img [src]="recipe.imagePath" alt="{{recipe.name}}">
     </div>
   </div>
