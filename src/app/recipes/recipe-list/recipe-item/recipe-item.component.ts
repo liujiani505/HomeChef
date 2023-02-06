@@ -18,6 +18,7 @@ export class RecipeItemComponent implements OnInit {
 
   viewDetails(){
     this.recipeSelected.emit();
+
   }
 
 }
