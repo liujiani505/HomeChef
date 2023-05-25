@@ -15,7 +15,7 @@
   <h2 class="text-center pb-4">My Recipes</h2>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       <div class="col" *ngFor="let recipeEl of recipes">
-        <app-recipe-item [recipe]="recipeEl" (recipeSelected)="onRecipeSelected(recipeEl)"></app-recipe-item>
+        <app-recipe-item [recipe]="recipeEl"></app-recipe-item>
       </div>
     </div>
 </div>
