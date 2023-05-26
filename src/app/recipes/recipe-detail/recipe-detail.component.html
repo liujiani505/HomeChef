@@ -12,7 +12,12 @@
             </ul>
         </div>        
         <p>{{recipe.description}}</p>
-        <div>Ingredients</div>
+        <div class="col-xs-5">
+          <ul class="list-group list-group-numbered">
+            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} - {{ingredient.amount}}</li>
+
+          </ul>
+        </div>
     </div>
     <div class="col-md-7">
         <img [src]="recipe.imagePath" alt="{{recipe.name}}">
