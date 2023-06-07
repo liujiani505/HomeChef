@@ -37,3 +37,8 @@ h1{
     --bs-btn-disabled-border-color: var(--hc-orange-color-hsl);
     --bs-gradient: none;
 }
+
+.active {
+    color: rgb(255, 157, 0)!important;
+}
+
