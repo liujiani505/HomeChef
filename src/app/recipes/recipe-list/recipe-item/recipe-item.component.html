@@ -5,7 +5,8 @@
             <p class="card-text">{{recipe.description}}</p>
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <!-- when you are using dynamic segments within the routerLink attribute, the leading slash is not required because you are specifying a relative path. The value of id will be appended to the current route to create the final URL. -->
+                    <button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="[id]">View</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
             </div>
         </div>
