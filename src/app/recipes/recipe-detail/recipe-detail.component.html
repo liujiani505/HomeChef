@@ -1,4 +1,7 @@
 <div id="recipe-start" class="row">
+    <div class="col-md-7">
+      <img style="width:100%; height:600px; object-fit: cover;" [src]="recipe.imagePath" alt="{{recipe.name}}">
+    </div>
     <div class="col-md-5">
         <h2>{{recipe.name}}</h2>
         <div class="dropdown" appDropdown #r="appDropdown">
@@ -7,7 +10,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [ngClass]="{show: r.isShown}">
               <li><a (click)="onAddToShoppingList()" class="dropdown-item" style="cursor:pointer;">To Shopping List</a></li>
-              <li><a class="dropdown-item" style="cursor:pointer;">Edit Recipe</a></li>
+              <li><a class="dropdown-item" style="cursor:pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
               <li><a class="dropdown-item" style="cursor:pointer;">Delete Recipe</a></li>
             </ul>
         </div>        
@@ -18,9 +21,6 @@
 
           </ul>
         </div>
-    </div>
-    <div class="col-md-7">
-        <img [src]="recipe.imagePath" alt="{{recipe.name}}">
     </div>
   </div>
 

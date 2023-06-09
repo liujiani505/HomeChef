@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { ElementRef } from '@angular/core';
@@ -13,7 +13,7 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
 
   recipe: Recipe;
   id: number;
-  constructor(private recipeService: RecipeService, private route: ActivatedRoute, private elRef: ElementRef) { }
+  constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) { }
 
   ngAfterViewInit(){
     const element = this.elRef.nativeElement.querySelector('#recipe-start');
@@ -33,5 +33,9 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
   }
   onAddToShoppingList(){
 
+  }
+
+  onEditRecipe(){
+    this.router.navigate(['/recipes', this.id, 'edit'])
   }
 }
