@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
 @Component({
@@ -12,10 +11,9 @@ import { RecipeService } from './recipe.service';
 })
 export class RecipesComponent implements OnInit {
 
-  selectedRecipe: Recipe;
   isEditing = false;
 
-  constructor(private recipeService: RecipeService, private router: Router) { 
+  constructor(private router: Router) { 
         // subscribe to router events to handle visibility
         this.router.events.pipe(
           filter(event => event instanceof NavigationEnd)
@@ -26,12 +24,7 @@ export class RecipesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recipeService.recipeSelected
-      .subscribe(
-        (recipe: Recipe) => {
-          this.selectedRecipe = recipe;
-        }
-      );
+
   }
 
 }
