@@ -1,5 +1,9 @@
 <div class="row">
     <h2>My Shopping List</h2>
+    <div class="col-xs-10">
+        <app-shopping-edit></app-shopping-edit>
+    </div>
+
     <ul class="list-group list-group-flush list-group-numbered">
         <a class="list-group-item d-flex justify-content-between align-items-start" style="cursor: pointer" *ngFor="let ingredient of ingredients">
             <div class="ms-2 me-auto">
@@ -9,7 +13,4 @@
         </a>
 
     </ul>
-    <div class="col-xs-10">
-        <app-shopping-edit></app-shopping-edit>
-    </div>
 </div>
