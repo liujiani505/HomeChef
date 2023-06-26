@@ -10,7 +10,7 @@
                 <div>{{ingredient.name}}</div>
             </div>
             <span class="badge bg-hc-primary rounded-pill">{{ingredient.amount}}</span>
-            <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 40px;">Delete</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 40px;" (click)="onDelete(i)">Delete</button>
         </a>
     </ul>
     
