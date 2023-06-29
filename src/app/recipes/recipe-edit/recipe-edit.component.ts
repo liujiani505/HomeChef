@@ -26,7 +26,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   private initForm(){
-    this.recipeForm = new FormGroup();
+    this.recipeForm = new FormGroup({});
   }
 
 }

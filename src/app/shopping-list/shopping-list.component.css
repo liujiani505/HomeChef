@@ -4,6 +4,9 @@ h2{
 
 ul{
     margin-top: 30px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 0px 10px 10px rgba(237, 237, 237, 0.45);
+    padding: 20px;
 }
 
 .list-group-item:hover{
