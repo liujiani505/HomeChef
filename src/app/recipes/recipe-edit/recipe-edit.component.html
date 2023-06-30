@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="name">Name</label>
+                        <label for="name">Name:</label>
                         <input type="text" id="name" formControlName="name" class="form-control">
                     </div>
                 </div>
@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="imagePath" style="margin-top: 15px;">Image URL</label>
+                        <label for="imagePath" style="margin-top: 15px;">Image URL:</label>
                         <input type="text" id="imagePath" formControlName="imagePath" class="form-control">
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="description" style="margin-top: 15px;">Description</label>
+                        <label for="description" style="margin-top: 15px;">Description:</label>
                         <textarea type="text" class="form-control" formControlName="description"  id="description" cols="30" rows="10"></textarea>
                     </div>
                 </div>
@@ -34,10 +34,10 @@
 
             <div class="row">
                 <div class="col-md-12" formArrayName="ingredients">
+                    <label for="addIngredient" style="margin-top: 15px;">Ingredients: <span><i class="fa fa-plus-square" aria-hidden="true" style="color: var(--hc-blue-color-rgb);font-size:20px;"></i></span></label>
                     <!-- Form groups in Angular are typically identified by strings, but you can use numbers too. Angular will implicitly convert the index number to a string when you pass it to formGroupName. -->
                     <!--controls below is referring to the return value of the getter function, we're not directly iterating over a function here, when it encounters controls in this ngFor statement, it treats it like a property and retrieves its values by calling the getter function -->
-                    <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
-                        <label for="addIngredient" style="margin-top: 15px;">Ingredient</label>
+                    <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i" style="margin-bottom: 15px;">
                         <div class="col-md-8">
                             <input type="text" class="form-control" formControlName="name">
                         </div>
