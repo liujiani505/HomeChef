@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="imagePath">Image URL</label>
+                        <label for="imagePath" style="margin-top: 15px;">Image URL</label>
                         <input type="text" id="imagePath" formControlName="imagePath" class="form-control">
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="description">Description</label>
+                        <label for="description" style="margin-top: 15px;">Description</label>
                         <textarea type="text" class="form-control" formControlName="description"  id="description" cols="30" rows="10"></textarea>
                     </div>
                 </div>
@@ -33,17 +33,19 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12">
-                    <div class="row">
-                        <label for="addIngredient">Add Ingredient</label>
+                <div class="col-md-12" formArrayName="ingredients">
+                    <!-- Form groups in Angular are typically identified by strings, but you can use numbers too. Angular will implicitly convert the index number to a string when you pass it to formGroupName. -->
+                    <!--controls below is referring to the return value of the getter function, we're not directly iterating over a function here, when it encounters controls in this ngFor statement, it treats it like a property and retrieves its values by calling the getter function -->
+                    <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i">
+                        <label for="addIngredient" style="margin-top: 15px;">Ingredient</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" formControlName="name">
                         </div>
                         <div class="col-md-2">
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" formControlName="amount">
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-sm btn-outline-secondary">Delete</button>
+                            <button class="btn btn-sm btn-outline-secondary">Delete Ingredient</button>
                         </div>
                     </div>
                 </div>

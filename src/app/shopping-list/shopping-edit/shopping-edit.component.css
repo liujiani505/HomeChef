@@ -11,3 +11,8 @@ button{
     padding: 20px;
 } */
 
+
+label{
+    font-weight:500;
+    margin-bottom: 5px;
+}
