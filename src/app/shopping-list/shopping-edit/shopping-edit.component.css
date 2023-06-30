@@ -5,11 +5,11 @@ button{
     padding-right: 20px;
 }
 
-/* form{
+form{
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px 0px 9px 7px rgba(237, 237, 237, 0.85);
-    padding: 20px;
-} */
+    box-shadow: 0px 0px 5px 5px rgba(230, 236, 237, 0.85);
+    padding: 30px;
+}
 
 
 label{

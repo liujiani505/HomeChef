@@ -63,3 +63,8 @@
     --bs-bg-opacity: 1;
     background-color: var(--hc-blue-color-rgb)!important;
 }
+
+
+body{
+    background-color: #f1f6fa;
+}

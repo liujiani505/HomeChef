@@ -1,0 +1,9 @@
+#recipe-start{
+    margin-bottom: 60px;
+}
+
+.badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -5,23 +5,25 @@
     <div class="col-md-5">
         <h2>{{recipe.name}}</h2>
         <div class="dropdown" appDropdown #r="appDropdown">
-            <button class="btn btn-hc-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Manage Recipe
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [ngClass]="{show: r.isShown}">
-              <li><a (click)="onAddToShoppingList()" class="dropdown-item" style="cursor:pointer;">To Shopping List</a></li>
-              <li><a class="dropdown-item" style="cursor:pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
-              <li><a class="dropdown-item" style="cursor:pointer;">Delete Recipe</a></li>
-            </ul>
-        </div>        
-        <p>{{recipe.description}}</p>
+          <button class="btn btn-hc-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Manage Recipe
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [ngClass]="{show: r.isShown}">
+            <li><a (click)="onAddToShoppingList()" class="dropdown-item" style="cursor:pointer;">To Shopping List</a></li>
+            <li><a class="dropdown-item" style="cursor:pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+            <li><a class="dropdown-item" style="cursor:pointer;">Delete Recipe</a></li>
+          </ul>
+        </div>      
+        <p style="margin-top: 20px;">{{recipe.description}}</p>
         <div class="col-xs-5">
-          <ul class="list-group list-group-numbered">
-            <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} - {{ingredient.amount}}</li>
-
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between" *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}}
+              <span class="badge rounded-pill bg-hc-primary">{{ingredient.amount}}</span>
+            </li>
           </ul>
         </div>
     </div>
+    
   </div>
 
 

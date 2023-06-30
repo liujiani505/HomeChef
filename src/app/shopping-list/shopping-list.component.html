@@ -1,17 +1,20 @@
 <div class="row">
-    <h2>My Shopping List</h2>
-    <div class="col-xs-10">
+    <h2 style="text-align: center">My Shopping List</h2>
+    <div class="col-md-12">
         <app-shopping-edit></app-shopping-edit>
     </div>
 
-    <ul class="list-group list-group-flush list-group-numbered">
-        <a class="list-group-item d-flex justify-content-between align-items-start" style="cursor: pointer" *ngFor="let ingredient of ingredients; let i=index;" (click)="onEditItem(i)">
-            <div class="ms-2 me-auto">
-                <div>{{ingredient.name}}</div>
-            </div>
-            <span class="badge bg-hc-primary rounded-pill">{{ingredient.amount}}</span>
-            <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 40px;" (click)="onDelete(i)">Delete</button>
-        </a>
-    </ul>
-    
+    <div class="col-md-12" style="margin-top:20px;">
+        <ul class="list-group list-group-flush list-group-numbered">
+            <a class="list-group-item d-flex justify-content-between align-items-start" style="cursor: pointer" *ngFor="let ingredient of ingredients; let i=index;" (click)="onEditItem(i)">
+                <div class="ms-2 me-auto">
+                    <div>{{ingredient.name}}</div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <span class="badge bg-hc-primary rounded-pill">{{ingredient.amount}}</span>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-left: 40px;" (click)="onDelete(i)">Delete</button>
+                </div>
+            </a>
+        </ul>
+    </div> 
 </div>

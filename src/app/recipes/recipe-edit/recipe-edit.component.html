@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row recipe-edit">
     <div class="col-md-12">
         <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
             <div class="row">
@@ -34,7 +34,9 @@
 
             <div class="row">
                 <div class="col-md-12" formArrayName="ingredients">
-                    <label for="addIngredient" style="margin-top: 15px;">Ingredients: <span><i class="fa fa-plus-square" aria-hidden="true" style="color: var(--hc-blue-color-rgb);font-size:20px;"></i></span></label>
+                    <label for="addIngredient" style="margin-top: 15px;">Ingredients: 
+                        <span><i class="fa fa-plus-square" aria-hidden="true" style="color: var(--hc-blue-color-rgb);font-size:20px;" (click)="onAddIngredient()"></i></span>
+                    </label>
                     <!-- Form groups in Angular are typically identified by strings, but you can use numbers too. Angular will implicitly convert the index number to a string when you pass it to formGroupName. -->
                     <!--controls below is referring to the return value of the getter function, we're not directly iterating over a function here, when it encounters controls in this ngFor statement, it treats it like a property and retrieves its values by calling the getter function -->
                     <div class="row" *ngFor="let ingredientCtrl of controls; let i = index" [formGroupName]="i" style="margin-bottom: 15px;">
