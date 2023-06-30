@@ -19,7 +19,8 @@ export class RecipesComponent implements OnInit {
           filter(event => event instanceof NavigationEnd)
         ).subscribe((event: NavigationEnd) => {
           // check if current url is 'new' or 'edit'
-          this.isEditing = event.urlAfterRedirects.includes('/recipes/new') ||  event.urlAfterRedirects.includes('/edit');
+          //  if you try to check event.urlAfterRedirects.includes(':id/edit'), it will always return false because :id is not part of the actual URL. The :id has been replaced with the actual id value in the URL.
+          this.isEditing = event.urlAfterRedirects.includes('/new') ||  event.urlAfterRedirects.includes('/edit');
         });
   }
 
