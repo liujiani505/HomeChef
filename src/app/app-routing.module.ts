@@ -17,6 +17,7 @@ const approutes: Routes = [
   {path: 'shopping-list', component: ShoppingListComponent},
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(approutes)],
   exports: [RouterModule]

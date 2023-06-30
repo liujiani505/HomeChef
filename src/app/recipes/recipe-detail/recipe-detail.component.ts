@@ -13,6 +13,8 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
 
   recipe: Recipe;
   id: number;
+  isEditing = false;
+
   constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) { }
 
   ngAfterViewInit(){
@@ -39,3 +41,4 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/recipes', this.id, 'edit'])
   }
 }
+

@@ -19,7 +19,7 @@ export class RecipesComponent implements OnInit {
           filter(event => event instanceof NavigationEnd)
         ).subscribe((event: NavigationEnd) => {
           // check if current url is 'new' or 'edit'
-          this.isEditing = event.urlAfterRedirects.includes('/recipes/new');
+          this.isEditing = event.urlAfterRedirects.includes('/recipes/new') ||  event.urlAfterRedirects.includes('/edit');
         });
   }
 
