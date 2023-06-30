@@ -21,3 +21,7 @@ form{
     background-color: white;
     padding: 20px;
 }
+
+input, textarea{
+    color: #636363;
+}
