@@ -8,7 +8,6 @@
     justify-content: center;
 }
 
-
 .dropdown-menu .dropdown-item:active {
     background-color: var(--hc-orange-color-rgb);
 }
