@@ -71,6 +71,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onAddIngredient(){
+    // The get method doesn't know the exact type of the form control, form group, or form array that you are trying to get. It only knows that what you are getting is a type of AbstractControl. When you want to use the specific methods of FormArray such as push, you need to tell TypeScript that the AbstractControl you are getting is actually a FormArray.
     (<FormArray>this.recipeForm.get('ingredients')).push(
       new FormGroup({
         'name': new FormControl(),
