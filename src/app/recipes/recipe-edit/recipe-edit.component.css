@@ -18,3 +18,8 @@ form{
 input, textarea{
     color: #636363;
 }
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
