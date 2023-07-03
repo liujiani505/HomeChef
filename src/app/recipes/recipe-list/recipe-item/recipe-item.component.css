@@ -5,3 +5,16 @@ h5{
 p{
     font-size: 14px;
 }
+
+.card{
+    height: 450px;
+    overflow: hidden;
+}
+
+.card-body .card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
