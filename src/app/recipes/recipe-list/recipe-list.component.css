@@ -2,7 +2,7 @@
     background-image: url('../../../assets/images/hero7.jpg'); 
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center -050px;
+    background-position: center -90px;
     height: 600px;
 }
 
@@ -11,4 +11,27 @@
     width: 500px;
     height: 280px;
     margin: 0 auto;
+}
+
+
+@media (max-width: 768px) {
+
+    .hero{
+        height: 350px;
+        background-position: center -25px;
+    }
+
+    h1{
+        font-size: 24px;
+    }
+
+    #header-text{
+        width: 300px;
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    p{
+        font-size: 14px;
+    }
 }

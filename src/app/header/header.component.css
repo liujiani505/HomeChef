@@ -39,6 +39,30 @@ h1{
 }
 
 .active {
-    color: rgb(255, 157, 0)!important;
+    color: var(--hc-orange-color-rgb) !important;
 }
 
+.fa, .fa-bars{
+    font-size: 30px;
+    color: rgb(180, 180, 180);
+}
+
+.mobile-only {
+    display: none;
+}
+
+
+.dropdown-menu .dropdown-item:active {
+    background-color: var(--hc-orange-color-rgb);
+}
+  
+@media (max-width: 768px) {
+
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: flex;
+    }
+}
