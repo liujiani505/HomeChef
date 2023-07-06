@@ -15,6 +15,7 @@ import { CommonModule } from '@angular/common';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { RecipeService } from './recipes/recipe.service';
     RecipeItemComponent,
     DropdownDirective,
     RecipeEditComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
