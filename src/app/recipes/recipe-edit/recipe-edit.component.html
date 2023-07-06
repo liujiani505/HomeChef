@@ -15,8 +15,13 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="imagePath" style="margin-top: 15px;">Image URL:</label>
-                            <input type="text" id="imagePath" formControlName="imagePath" class="form-control">
+                            <input type="text" id="imagePath" formControlName="imagePath" class="form-control" #imagePath>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img [src]="imagePath.value" alt="" style="width:100%; margin-top: 10px;">
                     </div>
                 </div>
 
