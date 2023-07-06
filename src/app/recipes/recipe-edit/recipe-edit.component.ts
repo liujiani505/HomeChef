@@ -101,4 +101,10 @@ export class RecipeEditComponent implements OnInit {
     this.router.navigate(['../'], {relativeTo: this.route})
   }
 
+  onDeleteIngredient(index:number){
+    // In Angular, when dealing with reactive forms and specifically FormArray, you should use the removeAt(index) method to remove an element from the FormArray at a specific index.
+    // The splice() method is a native JavaScript method used to change the contents of an array by removing or replacing existing elements. While this works perfectly for standard JavaScript arrays, FormArray in Angular is a class with its own methods for manipulating its contents. So, using splice() directly on a FormArray is not appropriate and may not work as expected.
+    (<FormArray>this.recipeForm.get('ingredients')).removeAt(index);
+  }
+
 }
