@@ -16,6 +16,7 @@ export class RecipeEditComponent implements OnInit {
   constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.route.params
       .subscribe(
         (params: Params) => {

@@ -5,7 +5,6 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipesComponent } from './recipes/recipes.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 
-
 const approutes: Routes = [
   {path: '', redirectTo:'/recipes', pathMatch:'full'},
   {path: 'recipes', component: RecipesComponent, children:[
