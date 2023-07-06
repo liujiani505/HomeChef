@@ -14,6 +14,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { CommonModule } from '@angular/common';
 import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { RecipeService } from './recipes/recipe.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
