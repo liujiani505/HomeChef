@@ -42,7 +42,9 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
   }
 
   onDeleteRecipe(){
+    console.log("onDeleteRecipe is being called");
     this.recipeService.deleteRecipe(this.id);
+    this.router.navigate(['/recipes'])
   }
 }
 

@@ -42,7 +42,9 @@ export class RecipeService{
     }
 
     deleteRecipe(index: number){
+        console.log("deleteRecipe is being called with index:", index);
         this.recipes.splice(index, 1);
+        console.log("recipes after deletion", this.recipes);
         this.recipesChanged.next(this.recipes.slice());
     }
 }

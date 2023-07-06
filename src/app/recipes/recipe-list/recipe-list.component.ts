@@ -19,7 +19,8 @@ export class RecipeListComponent implements OnInit {
     this.recipeService.recipesChanged
     .subscribe(
       (recipes: Recipe[]) => {
-        recipes = this.recipes;
+        // recipes = this.recipes; won't update the view, because we're assigning the updated recipes to this.recipe
+        this.recipes = recipes;
       }
     );
     this.recipes = this.recipeService.getRecipes();
