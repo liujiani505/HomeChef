@@ -67,6 +67,5 @@
 body{
     background-color: #f1f6fa;
     margin: 0;
-    min-height: 100%;
-    padding-bottom: 150px;   
+    min-height: 100%;  
 }
