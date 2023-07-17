@@ -16,6 +16,7 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './recipes/recipe.service';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule} from '@angular/common/http'
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]

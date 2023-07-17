@@ -18,14 +18,17 @@ export class RecipeListComponent implements OnInit, OnDestroy{
   constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.subscription = this.recipeService.recipesChanged
-    .subscribe(
-      (recipes: Recipe[]) => {
-        // recipes = this.recipes; won't update the view, because we're assigning the updated recipes to this.recipe
-        this.recipes = recipes;
-      }
-    );
-    this.recipes = this.recipeService.getRecipes();
+    // this.subscription = this.recipeService.recipesChanged
+    // .subscribe(
+    //   (recipes: Recipe[]) => {
+    //     // recipes = this.recipes; won't update the view, because we're assigning the updated recipes to this.recipe
+    //     this.recipes = recipes;
+    //   }
+    // );
+     this.recipeService.getRecipes().subscribe( recipes => {
+      this.recipes = recipes;
+     }
+     )
   }
 
   onNewRecipe(){
@@ -33,6 +36,6 @@ export class RecipeListComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 }
