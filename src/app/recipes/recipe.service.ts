@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { catchError, map, Subject, throwError } from "rxjs";
+import { catchError, tap, map, Subject, throwError } from "rxjs";
 import { Ingredient } from "../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
@@ -28,20 +28,24 @@ export class RecipeService{
     constructor(private slService: ShoppingListService, private http: HttpClient){}
 
     // adding a function for getting recipes from outside
-    getRecipes(){
-        // return this.recipes.slice();
+    getRecipes() {
         return this.http.get<Recipe[]>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json')
-        .pipe(
-            map(responseData => {
-                const latestRecipes = Object.values(responseData);
-                this.recipes = latestRecipes;
-                return latestRecipes;
-            }),
-            catchError(errorRes => {
-                // Handle error here
-                return throwError(errorRes);
-            })
-        );
+            .pipe(
+                map(responseData => {
+                    const recipesArray: Recipe[] = [];
+                    for (const key in responseData) {
+                        if (responseData.hasOwnProperty(key)) {
+                            recipesArray.push({ ...responseData[key], id: key });
+                        }
+                    }
+                    this.recipes = recipesArray;
+                    return recipesArray;
+                }),
+                catchError(errorRes => {
+                    // Handle error here
+                    return throwError(errorRes);
+                })
+            );
     }
 
     getRecipe(id:number){
@@ -66,12 +70,20 @@ export class RecipeService{
         this.recipesChanged.next(this.recipes.slice());
     }
 
-    deleteRecipe(index: number){
-        console.log("deleteRecipe is being called with index:", index);
-        this.recipes.splice(index, 1);
-        console.log("recipes after deletion", this.recipes);
-        this.recipesChanged.next(this.recipes.slice());
-    }
+    //In your initial implementation, you used pipe(map()) to perform a side effect (modifying the recipes array and emitting a new value), which is not its intended use. That's why you had to click twice for the recipe to be deleted - the deletion was not triggered immediately because map() doesn't guarantee that the side effect will be performed immediately upon subscription.
 
+    //When you switched to using tap(), it allowed the side effect to be performed immediately upon subscription, resulting in the recipe being deleted on the first click as expected.
+
+    //So, the key takeaway is to use the appropriate operator for the specific requirement - use transformation operators like map() when you need to transform the emitted data, and utility operators like tap() when you need to perform side effects.
+    
+    deleteRecipe(index: number){
+        const recipe = this.recipes[index];
+        return this.http.delete(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${recipe.id}.json`).pipe(
+            tap(() => {
+                this.recipes.splice(index, 1);
+                this.recipesChanged.next(this.recipes.slice());
+            })
+        );
+    }
 
 }
