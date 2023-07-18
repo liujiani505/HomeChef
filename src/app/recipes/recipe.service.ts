@@ -33,7 +33,9 @@ export class RecipeService{
         return this.http.get<Recipe[]>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json')
         .pipe(
             map(responseData => {
-                return Object.values(responseData);
+                const latestRecipes = Object.values(responseData);
+                this.recipes = latestRecipes;
+                return latestRecipes;
             }),
             catchError(errorRes => {
                 // Handle error here
@@ -51,11 +53,12 @@ export class RecipeService{
     }
 
     addRecipe(recipe: Recipe){
-        return this.http.post('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json', recipe).subscribe(response => {
-            console.log(response)
+        return this.http.post('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json', recipe)
+        .subscribe(response => {
+            console.log(response);
+            this.recipes.push(recipe);
+            this.recipesChanged.next(this.recipes.slice());
         })
-        // this.recipes.push(recipe);
-        // this.recipesChanged.next(this.recipes.slice());
     }
 
     updateRecipe(index: number, newRecipe: Recipe){
