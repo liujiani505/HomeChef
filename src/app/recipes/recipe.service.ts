@@ -66,8 +66,15 @@ export class RecipeService{
     }
 
     updateRecipe(index: number, newRecipe: Recipe){
-        this.recipes[index] = newRecipe;
-        this.recipesChanged.next(this.recipes.slice());
+        // if we use the index of the recipe in the array as the identifier in the database. If recipes aren't added to the database in the same order they are in the array, or if any recipes are deleted, the indexes won't match up.
+        // If the Recipe objects have an ID field that corresponds to their key in the Firebase database, it would be better to use this for the update operation:
+        const id = this.recipes[index].id;
+        return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${id}.json`, newRecipe)
+        .subscribe(response => {
+            console.log(response);
+            this.recipes[index] = newRecipe;
+            this.recipesChanged.next(this.recipes.slice());
+        })
     }
 
     //In your initial implementation, you used pipe(map()) to perform a side effect (modifying the recipes array and emitting a new value), which is not its intended use. That's why you had to click twice for the recipe to be deleted - the deletion was not triggered immediately because map() doesn't guarantee that the side effect will be performed immediately upon subscription.
