@@ -8,9 +8,7 @@ import { HttpClient } from '@angular/common/http'
 @Injectable()
 export class RecipeService{
     recipesChanged = new Subject<Recipe[]>();
-
-    // adding private so it can't accessed from outside
-    // private recipes: Recipe[] =[]
+    private recipes: Recipe[] = [];
 
     constructor(private slService: ShoppingListService, private http: HttpClient){}
 
@@ -25,8 +23,8 @@ export class RecipeService{
                             recipesArray.push({ ...responseData[key], id: key });
                         }
                     }
-                    // this.recipes = recipesArray;
-                    this.recipesChanged.next(recipesArray);
+                    this.recipes = recipesArray;
+                    this.recipesChanged.next(this.recipes.slice());
                     return recipesArray;
                 }),
                 catchError(errorRes => {
@@ -35,16 +33,6 @@ export class RecipeService{
                 })
             );
     }
-
-    // getRecipe(id: number){
-    //     return this.getRecipes().pipe(
-    //         map(recipes => recipes[id]),
-    //         catchError(errorRes => {
-    //             // Handle error here
-    //             return throwError(errorRes);
-    //         })
-    //     );
-    // }
 
     getRecipe(key: string) {
         return this.http.get<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`)
@@ -66,23 +54,22 @@ export class RecipeService{
 
     addRecipe(recipe: Recipe){
         return this.http.post<Recipe>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json', recipe)
-        .subscribe(response => {
-            // console.log(response);
-            // this.recipes.push(recipe);
-            // this.recipesChanged.next(this.recipes.slice());
-        })
+        .pipe(
+            tap( responseData => {
+                this.recipes.push(recipe);
+                this.recipesChanged.next(this.recipes.slice()); 
+            })
+        )
     }
 
-    updateRecipe(index: number, newRecipe: Recipe){
+    updateRecipe(key: string, newRecipe: Recipe){
         // if we use the index of the recipe in the array as the identifier in the database. If recipes aren't added to the database in the same order they are in the array, or if any recipes are deleted, the indexes won't match up.
         // If the Recipe objects have an ID field that corresponds to their key in the Firebase database, it would be better to use this for the update operation:
-        // const id = this.recipes[index].id;
-        // return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${id}.json`, newRecipe)
-        // .subscribe(response => {
-        //     console.log(response);
-        //     this.recipes[index] = newRecipe;
-        //     this.recipesChanged.next(this.recipes.slice());
-        // })
+        return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`, newRecipe)
+        .subscribe(response => {
+            this.recipes[key] = newRecipe;
+            this.recipesChanged.next(this.recipes.slice());
+        })
     }
 
     //In your initial implementation, you used pipe(map()) to perform a side effect (modifying the recipes array and emitting a new value), which is not its intended use. That's why you had to click twice for the recipe to be deleted - the deletion was not triggered immediately because map() doesn't guarantee that the side effect will be performed immediately upon subscription.
