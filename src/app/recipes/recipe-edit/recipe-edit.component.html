@@ -35,10 +35,6 @@
                 </div>
 
                 <div class="row">
-                    <img src="" alt="">
-                </div>
-
-                <div class="row">
                     <div class="col-md-12" formArrayName="ingredients">
                         <label for="addIngredient" style="margin-top: 15px;">Ingredients: 
                             <span><i class="fa fa-plus-square" aria-hidden="true" style="color: var(--hc-blue-color-rgb);font-size:20px;" (click)="onAddIngredient()"></i></span>
@@ -63,7 +59,7 @@
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-md-12">
                         <button class="btn btn-hc-primary" type="submit" [disabled]="!recipeForm.valid">Save</button>
-                        <button class="btn btn-outline-primary" style="margin-left: 20px;" type="buttom" (click)="onCancel()">Cancel</button>
+                        <button class="btn btn-outline-primary" style="margin-left: 20px;" type="button" (click)="onCancel()">Cancel</button>
                     </div>
                 </div>
                 
