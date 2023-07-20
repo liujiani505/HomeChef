@@ -24,6 +24,7 @@ export class RecipeListComponent implements OnInit, OnDestroy{
       (recipes: Recipe[]) => {
         // recipes = this.recipes; won't update the view, because we're assigning the updated recipes to this.recipe
         this.recipes = recipes;
+        console.log("Received New Recipes:", recipes);
       });
     // we need to subscribe getrecipes is to initially populate our this.recipes when the component is loaded.
     this.recipeService.getRecipes().subscribe((recipes:Recipe[]) => {
