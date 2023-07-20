@@ -11,8 +11,14 @@ import { ElementRef } from '@angular/core';
 })
 export class RecipeDetailComponent implements OnInit, AfterViewInit {
 
-  recipe: Recipe;
-  id: number;
+  recipe: Recipe = {
+    id: null,
+    name: '',
+    description: '',
+    imagePath: '',
+    ingredients: []
+  };
+  id: string;
   isEditing = false;
 
   constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) { }
@@ -27,12 +33,20 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.route.params
     .subscribe(
-      (params: Params) =>{
-        this.id = +params['id'];
-        this.recipe = this.recipeService.getRecipe(this.id);
-      }
-    )
+        (params: Params) => {
+            this.id = params['id'];
+            this.recipeService.getRecipe(this.id).subscribe(
+                (recipe: Recipe) => {
+                    this.recipe = recipe;
+                },
+                (error) => {
+                    console.error('Failed to fetch recipe:', error);
+                }
+            );
+        }
+    );
   }
+
   onAddToShoppingList(){
     this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
   }
@@ -42,12 +56,11 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit {
   }
 
   onDeleteRecipe(){
-    console.log("onDeleteRecipe is being called");
     this.recipeService.deleteRecipe(this.id)
     .subscribe(()=>{
-      console.log("i've been deleted")
+      this.recipeService.getRecipes().subscribe();
+      this.router.navigate(['/recipes'])
     });
-    this.router.navigate(['/recipes'])
   }
 }
 
