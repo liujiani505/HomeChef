@@ -68,7 +68,12 @@ export class RecipeService{
         return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`, newRecipe)
         .pipe(
             tap(() => {
-                this.recipes[key] = newRecipe;
+                // this.recipes[key] = newRecipe;  ---- this won't work, the recipes list view and recipe detail view won't update automatically, because I was using firebase key as if it's the index of my local recipes array.
+                // to fix this, I need to find the correct index of the recipe using the provided firebase key and then update the recipe.
+                const localIndex = this.recipes.findIndex(recipe => recipe.id === key)
+                if(localIndex !== -1){
+                    this.recipes[localIndex] = newRecipe;
+                }
                 this.recipesChanged.next(this.recipes.slice());
             })
         )
