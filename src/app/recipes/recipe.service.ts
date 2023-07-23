@@ -24,14 +24,16 @@ export class RecipeService{
                         }
                     }
                     this.recipes = recipesArray;
-                    this.recipesChanged.next(this.recipes.slice());
                     return recipesArray;
+                }),
+                tap(()=> {
+                    this.recipesChanged.next(this.recipes.slice());
                 }),
                 catchError(errorRes => {
                     // Handle error here
                     return throwError(errorRes);
                 })
-            );
+            )
     }
 
     getRecipe(key: string) {
