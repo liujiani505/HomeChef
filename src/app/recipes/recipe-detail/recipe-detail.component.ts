@@ -47,14 +47,14 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
         });
         
         // // only subscribing to recipesChanged once and not inside the route params subscription. This will ensure that you don’t create a new subscription every time the route params change.
-        // this.subscription = this.recipeService.recipesChanged
-        // .subscribe(
-        //   (recipes: Recipe[]) => {
-        //     const updatedRecipe = recipes.find(recipe => recipe.id = this.id);
-        //     if(updatedRecipe){
-        //       this.recipe = updatedRecipe;
-        //     }
-        //   });
+        this.subscription = this.recipeService.recipesChanged
+        .subscribe(
+          (recipes: Recipe[]) => {
+            const updatedRecipe = recipes.find(recipe => recipe.id = this.id);
+            if(updatedRecipe){
+              this.recipe = updatedRecipe;
+            }
+          });
   }
 
   onAddToShoppingList(){
