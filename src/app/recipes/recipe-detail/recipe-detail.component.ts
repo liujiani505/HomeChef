@@ -50,7 +50,7 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
         this.subscription = this.recipeService.recipesChanged
         .subscribe(
           (recipes: Recipe[]) => {
-            const updatedRecipe = recipes.find(recipe => recipe.id = this.id);
+            const updatedRecipe = recipes.find(recipe => recipe.id == this.id);
             if(updatedRecipe){
               this.recipe = updatedRecipe;
             }
