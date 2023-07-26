@@ -56,8 +56,10 @@ export class RecipeService{
     addRecipe(recipe: Recipe){
         return this.http.post<Recipe>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json', recipe)
         .pipe(
-            tap( () => {
-                this.recipes.push(recipe);
+            tap( (response) => {
+                console.log(response)
+                const newRecipe = {...recipe, id: response.name};
+                this.recipes.push(newRecipe);
                 this.recipesChanged.next(this.recipes.slice()); 
             })
         )
@@ -80,5 +82,14 @@ export class RecipeService{
     
     deleteRecipe(key: string){
         return this.http.delete(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`)
+        .pipe(
+            tap(() => {
+                const localIndex = this.recipes.findIndex(recipe => recipe.id === key);
+                if(localIndex !== -1){
+                    this.recipes.splice(localIndex, 1);
+                    this.recipesChanged.next(this.recipes.slice());
+                }
+            })
+        )
     }
 }
