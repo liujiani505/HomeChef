@@ -19,17 +19,13 @@ export class RecipeListComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
       this.recipeService.getRecipes().subscribe(recipes => {
-        debugger;
         this.recipes = recipes;
     });
 
-  // this subscription is for keeping the component updated in case the recipes change during the lifetime of this component, for instance, when we add, update, or delete a recipe elsewhere in your app, this subscription ensures that those changes are reflected in this component without requiring a new HTTP request.
     this.subscription = this.recipeService.recipesChanged
     .subscribe(
       (recipes: Recipe[]) => {
-        // recipes = this.recipes; won't update the view, because we're assigning the updated recipes to this.recipe
         this.recipes = recipes;
-        console.log("Received New Recipes:", recipes);
       });
   }
 

@@ -1,9 +1,9 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ElementRef} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { ElementRef } from '@angular/core';
 import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-recipe-detail',
@@ -33,6 +33,7 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    
     this.route.params
     .subscribe(
         (params: Params) => {
@@ -40,21 +41,19 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
             this.recipeService.getRecipe(this.id).subscribe(
                 (recipe: Recipe) => {
                     this.recipe = recipe;
-                },
-                (error) => {
-                    console.error('Failed to fetch recipe:', error);
-                });
+                    console.log('Get Recipe: ', this.recipe.name);
+                },);
         });
-        
-        // // only subscribing to recipesChanged once and not inside the route params subscription. This will ensure that you don’t create a new subscription every time the route params change.
-        this.subscription = this.recipeService.recipesChanged
-        .subscribe(
-          (recipes: Recipe[]) => {
-            const updatedRecipe = recipes.find(recipe => recipe.id == this.id);
-            if(updatedRecipe){
-              this.recipe = updatedRecipe;
-            }
-          });
+    this.subscription = this.recipeService.recipesChanged
+    .subscribe(
+      (recipes: Recipe[]) => {
+        console.log('RecipesChanged:', recipes);
+        const updatedRecipe = recipes.find(recipe => recipe.id === this.id);
+        if(updatedRecipe){
+          this.recipe = updatedRecipe;
+        }
+      });
+
   }
 
   onAddToShoppingList(){
@@ -68,7 +67,6 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
   onDeleteRecipe(){
     this.recipeService.deleteRecipe(this.id)
     .subscribe(()=>{
-      this.recipeService.getRecipes();
       this.router.navigate(['/recipes'])
     });
   }
