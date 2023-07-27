@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit, ElementRef} from '@angular/core';
+import { Component, OnDestroy, OnInit, ElementRef} from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
+export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   recipe: Recipe = {
     id: null,
@@ -25,10 +25,11 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(private recipeService: RecipeService, private router: Router, private route: ActivatedRoute, private elRef: ElementRef) { }
 
-  ngAfterViewInit(){
+
+  scrollToView() {
     const element = this.elRef.nativeElement.querySelector('#recipe-start');
     if (element) {
-      element.scrollIntoView({behavior: "smooth"});
+        element.scrollIntoView({behavior: "smooth"});
     }
   }
 
@@ -42,7 +43,8 @@ export class RecipeDetailComponent implements OnInit, AfterViewInit, OnDestroy {
                 (recipe: Recipe) => {
                     this.recipe = recipe;
                     console.log('Get Recipe: ', this.recipe.name);
-                },);
+                    this.scrollToView();
+                });
         });
     this.subscription = this.recipeService.recipesChanged
     .subscribe(
