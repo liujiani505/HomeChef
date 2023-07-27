@@ -17,6 +17,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipeService } from './recipes/recipe.service';
 import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule} from '@angular/common/http'
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { HttpClientModule} from '@angular/common/http'
     DropdownDirective,
     RecipeEditComponent,
     FooterComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
