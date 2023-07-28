@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { catchError, tap, map, Subject, throwError } from "rxjs";
-import { Ingredient } from "../shared/ingredient.model";
+import { Ingredient } from "../../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
 import { HttpClient } from '@angular/common/http'

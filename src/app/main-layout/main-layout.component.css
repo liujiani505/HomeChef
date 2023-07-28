@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.content {
+    flex-grow: 1;
+    overflow: auto;
+    padding-bottom: 80px;
+}
+
