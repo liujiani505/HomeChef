@@ -45,7 +45,7 @@ form, .welcome-text{
     color: gray;
 }
 
-.login a{
+.login span{
     color: var(--hc-orange-color-rgb)
 }
 

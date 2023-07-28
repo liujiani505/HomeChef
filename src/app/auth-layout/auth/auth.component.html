@@ -18,10 +18,10 @@
                     <input type="password" id="password" class="form-control">
                 </div>
                 <div>
-                    <button class="btn btn-hc-primary mt-4 mb-4">Sign Up</button>
+                    <button class="btn btn-hc-primary mt-4 mb-4" type="submit">{{ isLoginMode ? 'Login' : 'Register'}}</button>
                 </div>
                 <div class="login">
-                   <p>Already have an account? <a>Login from here.</a></p>
+                   <p>{{ isLoginMode ? 'New to the HomeChef family?' : 'Been cooking with us before?'}}<span (click)="onSwitchMode()"> {{ isLoginMode ? 'Join our kitchen.' : 'Dive back in.'}}</span></p>
                 </div>
             </form>
         </div>
