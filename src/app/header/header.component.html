@@ -5,11 +5,11 @@
       <div class="dropdown mobile-only" appDropdown #r="appDropdown">
         <span  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-bars"></i></span>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [ngClass]="{show: r.isShown}">
-          <li><a class="dropdown-item" style="cursor:pointer;">Login</a></li>
-          <li><a class="dropdown-item" style="cursor:pointer;">Sign-up</a></li>
+          <li><a class="dropdown-item" style="cursor:pointer;">Logout</a></li>
+          <!-- <li><a class="dropdown-item" style="cursor:pointer;">Sign-up</a></li> -->
         </ul>
       </div>
-      <a href="/" class="d-flex align-items-center justify-content-center">
+      <a routerLink="/recipes" class="d-flex align-items-center justify-content-center">
         <img src="../../assets/images/logo.png" style="width: 30%; min-width: 120px;">
       </a>
     </div>
@@ -22,8 +22,8 @@
     </div>
   
     <div class="col-12 col-md-4 text-center">
-      <button type="button" class="btn me-2 btn-outline-primary desktop-only">Login</button>
-      <button type="button" class="btn btn-hc-primary desktop-only">Sign-up</button>
+      <button type="button" class="btn me-2 btn-outline-primary desktop-only">Logout</button>
+      <!-- <button type="button" class="btn btn-hc-primary desktop-only">Sign-up</button> -->
     </div>
 
   </header>
