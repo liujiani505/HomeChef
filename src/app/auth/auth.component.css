@@ -5,12 +5,9 @@
     position: relative; 
 }
 
-.logo{
-    padding: 80px;
-}
-
 .logo img{
-    width: 25%;
+    margin: 90px;
+    width: 150px;
 }
 
 .image-section {
@@ -54,4 +51,29 @@ form, .welcome-text{
 
 .welcome-text p{
     color: gray;
+}
+
+@media (max-width: 768px) {
+
+    .logo img{
+        margin: 40px;
+    }
+    
+
+    form, .welcome-text{
+        padding: 0px 40px;
+    }
+
+    .image-section{
+        padding:40px;
+    }
+
+    .image-section h1{
+        font-size: 30px;
+    }
+    
+    .image-section p{
+        font-size: 16px;
+    }
+
 }
