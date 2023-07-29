@@ -46,6 +46,10 @@ form, .welcome-text{
 }
 
 .login span{
+    cursor: pointer;
+}
+
+.login span{
     color: var(--hc-orange-color-rgb)
 }
 
