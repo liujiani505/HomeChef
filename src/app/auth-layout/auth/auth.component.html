@@ -8,6 +8,9 @@
                 <h5>Welcome to HomeChef!</h5>
                 <p>Sign up or login in to continue your culinary journey or register to begin crafting your own tale.</p>
             </div>
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{ error }}</p>
+            </div>
             <div *ngIf="isLoading">
                 <app-loading-spinner></app-loading-spinner>
             </div>
