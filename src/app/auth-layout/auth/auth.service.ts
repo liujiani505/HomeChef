@@ -34,8 +34,16 @@ export class AuthService{
             switch (errorResponse.error.error.message) {
                 case 'EMAIL_EXISTS':
                     errorMessage = 'This email has already penned its first chapter with us. Care to continue the journey?';
+                case 'OPERATION_NOT_ALLOWED':
+                    errorMessage = 'For this chapter of our cookbook, password sign-ins have been set aside. Seek alternative ways to embark on the journey.';
+                case 'TOO_MANY_ATTEMPTS_TRY_LATER':
+                    errorMessage = 'We have blocked all requests from this device due to unusual activity. Try again later.';
             }
             return throwError(errorMessage);
         }))
+    }
+
+    login(){
+
     }
 }
