@@ -20,6 +20,7 @@ import { HttpClientModule} from '@angular/common/http'
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AuthComponent } from './auth-layout/auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { AuthComponent } from './auth-layout/auth/auth.component';
     AuthComponent,
     MainLayoutComponent,
     AuthLayoutComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
