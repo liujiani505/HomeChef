@@ -8,16 +8,22 @@ import { take, map } from 'rxjs/operators';
 export class AuthGuard implements CanActivate {
     constructor(private authService: AuthService, private router: Router) {}
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         return this.authService.user.pipe(
-            take(1),
-            map(user => {
-                const isAuth = !!user;
-                if (isAuth) {
-                    return true;
-                }
+          take(1),
+          map(user => {
+            const isAuth = !!user;
+            if (isAuth) {
+              return true;
+            } else {
+              // Only redirect to 'auth' if we are not already on 'auth'
+              if(state.url !== '/auth'){
                 return this.router.createUrlTree(['/auth']);
-            })
+              } else {
+                return false;
+              }
+            }
+          })
         );
-    }
+      }
 }

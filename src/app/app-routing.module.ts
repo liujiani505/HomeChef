@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AuthComponent } from './auth-layout/auth/auth.component';
+import { AuthGuard } from './auth-layout/auth/auth.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { RecipeDetailComponent } from './main-layout/recipes/recipe-detail/recipe-detail.component';
 import { RecipeEditComponent } from './main-layout/recipes/recipe-edit/recipe-edit.component';
@@ -14,8 +15,9 @@ const approutes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+      { path: '', redirectTo: '/auth', pathMatch: 'full' },
       {
         path: 'recipes', 
         component: RecipesComponent, 
@@ -30,10 +32,10 @@ const approutes: Routes = [
     ]
   },
   {
-    path: '',
+    path: 'auth',
     component: AuthLayoutComponent,
     children: [
-      { path: 'auth', component: AuthComponent }
+      { path: '', component: AuthComponent }
     ]
   }
 ];
