@@ -1,39 +1,51 @@
 import { Injectable } from "@angular/core";
-import { catchError, tap, map, Subject, throwError } from "rxjs";
+import { catchError, tap, map, Subject, throwError, take, exhaustMap } from "rxjs";
 import { Ingredient } from "../../shared/ingredient.model";
 import { ShoppingListService } from "../shopping-list/shopping-list.service";
 import { Recipe } from "./recipe.model";
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
+import { AuthService } from "src/app/auth-layout/auth/auth.service";
 
 @Injectable()
 export class RecipeService{
     recipesChanged = new Subject<Recipe[]>();
     private recipes: Recipe[] = [];
 
-    constructor(private slService: ShoppingListService, private http: HttpClient){}
+    constructor(private slService: ShoppingListService, private http: HttpClient, private authService: AuthService){}
 
 
     getRecipes() {
-        return this.http.get<{ [key: string] : Recipe}>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json')
-            .pipe(
-                map(responseData => {
-                    const recipesArray: Recipe[] = [];
-                    for (const key in responseData) {
-                        if (responseData.hasOwnProperty(key)) {
-                            recipesArray.push({ ...responseData[key], id: key });
-                        }
+        // we don't want an ongoing subscription,but we still need to subscribe to get the user only once, use pipe and take(1)
+        // the observable in exhaustMap (second observable) will be switched to after we take the lastest user (second observable)
+        return this.authService.user.pipe(
+            take(1), 
+            exhaustMap(user => {
+                console.log("Token:", user.token);
+                return this.http.get<{ [key: string] : Recipe}>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json',
+                // HttpParams is mainly used to send parameters with GET requests
+                {
+                    params: new HttpParams().set('auth', user.token)
+                }
+                );
+            }),
+            map(responseData => {
+                const recipesArray: Recipe[] = [];
+                for (const key in responseData) {
+                    if (responseData.hasOwnProperty(key)) {
+                        recipesArray.push({ ...responseData[key], id: key });
                     }
-                    this.recipes = recipesArray;
-                    return recipesArray;
-                }),
-                tap(()=> {
-                    this.recipesChanged.next(this.recipes.slice());
-                }),
-                catchError(errorRes => {
-                    // Handle error here
-                    return throwError(errorRes);
-                })
-            )
+                }
+                this.recipes = recipesArray;
+                return recipesArray;
+            }),
+            tap(()=> {
+                this.recipesChanged.next(this.recipes.slice());
+            }),
+            catchError(errorRes => {
+                // Handle error here
+                return throwError(errorRes);
+            })
+        )
     }
 
     getRecipe(key: string) {
