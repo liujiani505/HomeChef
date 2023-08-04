@@ -13,6 +13,7 @@ export class AuthComponent{
     isLoginMode = false;
     isLoading = false;
     error:string = null;
+    successMessage: string = null;
 
     constructor(private authService: AuthService, private router: Router,){}
 
@@ -44,6 +45,7 @@ export class AuthComponent{
                     this.router.navigate(['/recipes']);
                 } else {
                     this.isLoginMode = true;
+                    this.successMessage = "Registration complete! Begin your culinary tale by logging in."
                 }
 
             },

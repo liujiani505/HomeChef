@@ -11,6 +11,9 @@
             <div class="alert" *ngIf="error">
                 <p>{{ error }}</p>
             </div>
+            <div class="success" *ngIf="successMessage">
+                <p>{{ successMessage }}</p>
+            </div>
             <div *ngIf="isLoading">
                 <app-loading-spinner></app-loading-spinner>
             </div>
