@@ -102,8 +102,11 @@ export class RecipeService{
     }
     
     deleteRecipe(key: string){
-        return this.http.delete(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`)
-        .pipe(
+        return this.authService.user.pipe(
+            take(1),
+            exhaustMap(user => {
+                return this.http.delete(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`)
+            }),
             tap(() => {
                 const localIndex = this.recipes.findIndex(recipe => recipe.id === key);
                 if(localIndex !== -1){
