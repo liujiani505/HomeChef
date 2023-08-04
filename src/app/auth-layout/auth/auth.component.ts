@@ -40,10 +40,10 @@ export class AuthComponent{
             responseData => {
                 console.log(responseData);
                 this.isLoading = false;
-                if(!this.isLoginMode){
-                    this.isLoginMode = true;
-                } else {
+                if(this.isLoginMode){
                     this.router.navigate(['/recipes']);
+                } else {
+                    this.isLoginMode = true;
                 }
 
             },
