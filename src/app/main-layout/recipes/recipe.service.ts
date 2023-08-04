@@ -84,8 +84,11 @@ export class RecipeService{
     }
 
     updateRecipe(key: string, newRecipe: Recipe){
-        return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`, newRecipe)
-        .pipe(
+        return this.authService.user.pipe(
+            take(1),
+            exhaustMap(user => {
+                return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`, newRecipe);
+            }),
             tap(() => {
                 const localIndex = this.recipes.findIndex(recipe => recipe.id === key)
                 if(localIndex !== -1){
@@ -95,7 +98,7 @@ export class RecipeService{
                     this.recipesChanged.next(this.recipes.slice());
                 }
             })
-        )
+        );
     }
     
     deleteRecipe(key: string){
