@@ -49,16 +49,19 @@ export class RecipeService{
     }
 
     getRecipe(key: string) {
-        return this.http.get<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${key}.json`)
-            .pipe(
-                map(recipeData => {
-                    return { ...recipeData, id: key };
-                }),
-                catchError(errorRes => {
-                    // Handle error here
-                    return throwError(errorRes);
-                })
-            );
+        return this.authService.user.pipe(
+            take(1),
+            exhaustMap(user => {
+                return this.http.get<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`);
+            }),
+            map(recipeData => {
+                return { ...recipeData, id: key };
+            }),
+            catchError(errorRes => {
+                // Handle error here
+                return throwError(errorRes);
+            })
+        );
     }
 
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
