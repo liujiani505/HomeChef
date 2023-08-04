@@ -21,7 +21,7 @@ export class RecipeService{
             take(1), 
             exhaustMap(user => {
                 console.log("Token:", user.token);
-                return this.http.get<{ [key: string] : Recipe}>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes.json',
+                return this.http.get<{ [key: string] : Recipe}>('https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}.json',
                 // HttpParams is mainly used to send parameters with GET requests
                 {
                     params: new HttpParams().set('auth', user.token)
