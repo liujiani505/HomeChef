@@ -25,8 +25,7 @@ export class RecipeService{
                 // HttpParams is mainly used to send parameters with GET requests
                 {
                     params: new HttpParams().set('auth', user.token)
-                }
-                );
+                });
             }),
             map(responseData => {
                 const recipesArray: Recipe[] = [];
@@ -52,7 +51,11 @@ export class RecipeService{
         return this.authService.user.pipe(
             take(1),
             exhaustMap(user => {
-                return this.http.get<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`);
+                return this.http.get<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`,
+                // HttpParams is mainly used to send parameters with GET requests
+                {
+                    params: new HttpParams().set('auth', user.token)
+                });
             }),
             map(recipeData => {
                 return { ...recipeData, id: key };
@@ -72,7 +75,10 @@ export class RecipeService{
         return this.authService.user.pipe(
             take(1),
             exhaustMap(user => {
-                return this.http.post<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}.json`, recipe);
+                return this.http.post<Recipe>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}.json`, recipe,
+                {
+                    params: new HttpParams().set('auth', user.token)
+                });
             }),
             tap((response) => {
                 console.log(response)
@@ -87,7 +93,10 @@ export class RecipeService{
         return this.authService.user.pipe(
             take(1),
             exhaustMap(user => {
-                return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`, newRecipe);
+                return this.http.put(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`, newRecipe,
+                {
+                    params: new HttpParams().set('auth', user.token)
+                });
             }),
             tap(() => {
                 const localIndex = this.recipes.findIndex(recipe => recipe.id === key)
@@ -105,7 +114,10 @@ export class RecipeService{
         return this.authService.user.pipe(
             take(1),
             exhaustMap(user => {
-                return this.http.delete(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`)
+                return this.http.delete(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}/${key}.json`,
+                {
+                    params: new HttpParams().set('auth', user.token)
+                })
             }),
             tap(() => {
                 const localIndex = this.recipes.findIndex(recipe => recipe.id === key);
