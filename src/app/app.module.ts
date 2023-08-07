@@ -16,11 +16,12 @@ import { ShoppingListService } from './main-layout/shopping-list/shopping-list.s
 import { RecipeEditComponent } from './main-layout/recipes/recipe-edit/recipe-edit.component';
 import { RecipeService } from './main-layout/recipes/recipe.service';
 import { FooterComponent } from './main-layout/footer/footer.component';
-import { HttpClientModule} from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AuthComponent } from './auth-layout/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth-layout/auth/auth-interceptor.service';
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

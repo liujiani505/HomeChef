@@ -15,18 +15,11 @@ export class RecipeService{
 
 
     getRecipes() {
-        // we don't want an ongoing subscription,but we still need to subscribe to get the user only once, use pipe and take(1)
-        // the observable in exhaustMap (second observable) will be switched to after we take the lastest user (second observable)
         return this.authService.user.pipe(
             take(1), 
             exhaustMap(user => {
                 console.log("Token:", user.token);
-                return this.http.get<{ [key: string] : Recipe}>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}.json`,
-                // HttpParams is mainly used to send parameters with GET requests
-                {
-                    params: new HttpParams().set('auth', user.token)
-                }
-                );
+                return this.http.get<{ [key: string] : Recipe}>(`https://homechef-a8f12-default-rtdb.firebaseio.com/recipes/${user.id}.json`);
             }),
             map(responseData => {
                 const recipesArray: Recipe[] = [];
