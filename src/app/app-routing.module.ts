@@ -37,7 +37,8 @@ const approutes: Routes = [
     children: [
       { path: '', component: AuthComponent }
     ]
-  }
+  },
+  { path: '**', redirectTo:'/auth'}
 ];
 
 

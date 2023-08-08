@@ -56,7 +56,7 @@ export class AuthService{
         const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
         const user = new User(email, userId, token, expirationDate);
         this.user.next(user);
-        localStorage.setItem('userData', JSON.stringify(user));
+        // localStorage.setItem('userData', JSON.stringify(user));
     }
 
     private handleError(errorResponse: HttpErrorResponse){
@@ -85,5 +85,11 @@ export class AuthService{
                 break;
             }
             return throwError(errorMessage);
+    }
+
+    logout(){
+        this.user.next(null);   
+        // since we're not redirecting just in one place (header component, and auto logout) so we navigate away in auth service
+        this.router.navigate(['/auth']);
     }
 }
