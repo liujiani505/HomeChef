@@ -68,6 +68,7 @@ export class AuthService{
         }
     }
 
+
     private handleUser(email:string, userId: string, token: string, expiresIn:number){
         const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
         const user = new User(email, userId, token, expirationDate);
@@ -107,5 +108,6 @@ export class AuthService{
         this.user.next(null);   
         // since we're not redirecting just in one place (header component, and auto logout) so we navigate away in auth service
         this.router.navigate(['/auth']);
+        localStorage.removeItem('userData');
     }
 }
