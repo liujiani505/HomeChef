@@ -5,7 +5,7 @@
       <div class="dropdown mobile-only" appDropdown #r="appDropdown">
         <span  data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-bars"></i></span>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" [ngClass]="{show: r.isShown}">
-          <li><a class="dropdown-item" style="cursor:pointer;">Logout</a></li>
+          <li><a class="dropdown-item" style="cursor:pointer;" (click)="onLogout()">Logout</a></li>
           <!-- <li><a class="dropdown-item" style="cursor:pointer;">Sign-up</a></li> -->
         </ul>
       </div>
