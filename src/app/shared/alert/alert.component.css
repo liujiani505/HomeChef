@@ -1,0 +1,53 @@
+.backdrop{
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.75);
+    z-index:50;
+}
+
+.alert-box{
+    position: fixed;
+    top: 30vh;
+    left:30vw;
+    width: 35vw;
+    height: 50vh;
+    padding: 16px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0px 0px 5px 5px rgba(49, 49, 49, 0.85);
+    text-align: center;
+}
+
+.alert-box i{
+    color: red;
+}
+
+.alert-box h2{
+    margin-top: 40px;
+}
+.alert-box p {
+    margin-top: 20px;
+}
+.alert-box button {
+    margin-top: 20px;
+    padding: 10px 100px 10px 100px;
+}
+.alert-box-actions{
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+
+    .alert-box{
+        left:20vw;
+        width: 55vw;
+        height: 50vh;
+    }
+
+    .alert-box button {
+        padding: 10px 60px 10px 60px;
+    }
+}
