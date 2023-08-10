@@ -11,7 +11,7 @@
             <!-- <div class="alert" *ngIf="error">
                 <p>{{ error }}</p>
             </div> -->
-            <app-alert [message]="error" *ngIf="error"></app-alert>
+            <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
             <div class="success" *ngIf="successMessage">
                 <p>{{ successMessage }}</p>
             </div>
