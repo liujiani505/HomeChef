@@ -18,9 +18,6 @@ const approutes: Routes = [
   {
     path: 'auth',
     component: AuthLayoutComponent,
-    children: [
-      { path: '', component: AuthComponent }
-    ]
   },
   { path: '**', redirectTo:'/auth'}
 ];
