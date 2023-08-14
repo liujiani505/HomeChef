@@ -27,11 +27,11 @@ import { AuthModule } from './auth-layout/auth/auth.module';
     AppRoutingModule,
     HttpClientModule,
     //  FEATURE MODULES
-    RecipesModule,
-    ShoppingListModule,
+    // RecipesModule,
+    // ShoppingListModule,
     SharedModule,
     CoreModule,
-    AuthModule
+    // AuthModule
   ],
   bootstrap: [AppComponent]
 })

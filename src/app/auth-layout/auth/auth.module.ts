@@ -12,7 +12,7 @@ import { AuthComponent } from "./auth.component";
     imports:[FormsModule, CommonModule,
     RouterModule.forChild([
         {
-            path: 'auth',
+            path: '',
             component: AuthLayoutComponent,
             children:[{ path: '', component: AuthComponent }]
           },
