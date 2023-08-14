@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AuthGuard } from './auth-layout/auth/auth.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -14,7 +15,12 @@ const approutes: Routes = [
       { path: 'shopping-list', loadChildren: () => import('./main-layout/shopping-list/shopping-list.module').then(m => m.ShoppingListModule)},
     ]
   },
-  { path: 'auth', loadChildren: () => import('./auth-layout/auth/auth.module').then(m => m.AuthModule) },
+  { path: '',
+    component: AuthLayoutComponent,
+    children: [ 
+      { path: 'auth', loadChildren: () => import('./auth-layout/auth/auth.module').then(m => m.AuthModule) } 
+    ]
+  },
   { path: '**', redirectTo: '/auth' },
 ];
 
