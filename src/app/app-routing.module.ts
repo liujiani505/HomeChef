@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 import { AuthGuard } from './auth-layout/auth/auth.guard';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
@@ -26,7 +26,7 @@ const approutes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(approutes)],
+  imports: [RouterModule.forRoot(approutes, {preloadingStrategy: PreloadAllModules})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
